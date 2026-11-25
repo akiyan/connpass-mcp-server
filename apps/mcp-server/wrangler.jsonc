@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "connpass-mcp-server",
+  "main": "src/worker.ts",
+  "compatibility_date": "2026-05-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "rules": [{ "type": "Text", "globs": ["**/*.html"], "fallthrough": true }],
+  "durable_objects": {
+    "bindings": [{ "name": "SEARCH_SESSIONS", "class_name": "SearchSessionObject" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["SearchSessionObject"] }]
+}

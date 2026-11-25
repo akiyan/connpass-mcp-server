@@ -12,23 +12,35 @@
     "dev": "NODE_ENV=development tsx src/index.ts",
     "dev:http": "NODE_ENV=development MCP_HTTP_MODE=true tsx src/index.ts",
     "build": "tsup",
+    "worker:dev": "wrangler dev",
+    "worker:deploy": "wrangler deploy",
+    "worker:check": "tsc --noEmit && wrangler deploy --dry-run --outdir .wrangler/worker-check",
     "prepublishOnly": "pnpm run build"
   },
   "dependencies": {
+    "@cloudflare/workers-oauth-provider": "1.2.4",
     "@kajidog/connpass-api-client": "workspace:*",
     "@modelcontextprotocol/ext-apps": "^1.0.0",
     "@modelcontextprotocol/sdk": "^1.26.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@kajidog/mcp-core": "workspace:*",
+    "@cloudflare/workers-types": "4.20260507.1",
     "@kajidog/connpass-ui": "workspace:*",
+    "@kajidog/mcp-core": "workspace:*",
     "@types/node": "^20.0.0",
+    "miniflare": "4.20260507.1",
     "tsup": "^8.5.0",
     "tsx": "^4.19.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "wrangler": "4.90.0"
   },
-  "keywords": ["mcp", "mcp-server", "connpass", "mcp-apps"],
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "connpass",
+    "mcp-apps"
+  ],
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -42,7 +54,10 @@
   "engines": {
     "node": ">=18"
   },
-  "files": ["dist", "README.md"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "publishConfig": {
     "access": "public"
   },

@@ -55,6 +55,10 @@ npx @kajidog/connpass-mcp-server --help
 npx @kajidog/connpass-mcp-server --http --port 3000
 ```
 
+### Cloudflare Workers にデプロイ（akiyan fork）
+
+認証付き Streamable HTTP と MCP Apps に対応しています。[デプロイ・検証手順](docs/cloudflare-workers.md)を参照してください。
+
 ### 必要要件
 
 - Node.js 18 以上

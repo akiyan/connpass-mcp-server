@@ -125,7 +125,7 @@ export function registerEventTools(deps: ToolDeps): void {
       : FORMAT_PRESETS.default;
     const formatted = formatEventsResponse(response, formatOptions);
     const browseFormatted = formatEventsResponse(response, LIST_FORMAT_OPTIONS);
-    const searchSessionId = searchSessionStore.save(browseFormatted);
+    const searchSessionId = await searchSessionStore.save(browseFormatted);
     return {
       content: [
         {
@@ -189,7 +189,7 @@ export function registerEventTools(deps: ToolDeps): void {
           searchSessionId: z.uuid(),
         })
         .parse(args ?? {});
-      const formatted = searchSessionStore.get(searchSessionId);
+      const formatted = await searchSessionStore.get(searchSessionId);
       if (!formatted) {
         return {
           content: [

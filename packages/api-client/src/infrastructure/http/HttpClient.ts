@@ -9,6 +9,7 @@ import {
 import type { QueryParams } from "../repositories/apiTypes";
 
 export interface HttpClientConfig {
+  adapter?: "fetch";
   baseURL: string;
   apiKey: string;
   timeout?: number;
@@ -30,6 +31,7 @@ export class HttpClient {
     this.rateLimitEnabled = config.rateLimitEnabled ?? true;
 
     this.client = axios.create({
+      adapter: config.adapter,
       baseURL: config.baseURL,
       timeout: config.timeout ?? 30000,
       headers: {

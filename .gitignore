@@ -33,3 +33,8 @@ Thumbs.db
 
 # TypeScript incremental build info
 *.tsbuildinfo
+
+# Cloudflare Workers local credentials and state
+.dev.vars*
+.wrangler/
+wrangler.oauth.local.jsonc

@@ -10,12 +10,24 @@ export interface SearchSessionStoreOptions {
   ttlMs?: number;
 }
 
-export class SearchSessionStore {
+export const SEARCH_SESSION_TTL_MS = 10 * 60 * 1000;
+
+export interface SearchSessionStorage {
+  save(result: FormattedEventsResponse): string | Promise<string>;
+  get(
+    id: string,
+  ):
+    | FormattedEventsResponse
+    | undefined
+    | Promise<FormattedEventsResponse | undefined>;
+}
+
+export class SearchSessionStore implements SearchSessionStorage {
   private readonly ttlMs: number;
   private readonly sessions = new Map<string, SearchSessionEntry>();
 
   constructor(options: SearchSessionStoreOptions = {}) {
-    this.ttlMs = options.ttlMs ?? 10 * 60 * 1000;
+    this.ttlMs = options.ttlMs ?? SEARCH_SESSION_TTL_MS;
   }
 
   save(result: FormattedEventsResponse): string {

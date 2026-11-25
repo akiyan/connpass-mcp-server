@@ -7,10 +7,10 @@ import {
 } from "@kajidog/connpass-api-client";
 import { z } from "zod";
 
-interface ToolErrorResponse {
+type ToolErrorResponse = {
   isError: true;
   content: Array<{ type: "text"; text: string }>;
-}
+};
 
 function formatZodIssues(error: z.ZodError): string {
   return error.issues

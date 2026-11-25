@@ -14,3 +14,5 @@ coverage
 *.swo
 *~
 data
+**/.dev.vars*
+**/.wrangler

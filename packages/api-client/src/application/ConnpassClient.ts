@@ -10,7 +10,10 @@ import {
   UsersResponse,
 } from "../domain/entities";
 import { PresentationCache } from "../infrastructure/cache/PresentationCache";
-import { HttpClient } from "../infrastructure/http/HttpClient";
+import {
+  HttpClient,
+  type HttpClientConfig,
+} from "../infrastructure/http/HttpClient";
 import {
   EventRepository,
   GroupRepository,
@@ -19,6 +22,7 @@ import {
 import { EventService, GroupService, UserService } from "./services";
 
 export interface ConnpassClientConfig {
+  adapter?: HttpClientConfig["adapter"];
   apiKey: string;
   baseURL?: string;
   timeout?: number;
@@ -43,6 +47,7 @@ export class ConnpassClient {
     const httpClient = new HttpClient({
       baseURL: config.baseURL ?? "https://connpass.com/api/v2",
       apiKey: config.apiKey,
+      adapter: config.adapter,
       timeout: config.timeout,
       rateLimitDelay: config.rateLimitDelay,
       rateLimitEnabled: config.rateLimitEnabled,
